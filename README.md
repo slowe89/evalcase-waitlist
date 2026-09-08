@@ -45,3 +45,11 @@ Hidden fields on submit: `source` (`evalcase-scorecard` or `evalcase-waitlist`),
 - Priestley form (required email + Q1–Q5 + budget band)
 
 This is a waitlist / score follow-up page only. Packaging is unproven until budget distribution is visible.
+
+## Preview
+
+Browser-verified shots of the shipped page:
+
+- [docs/preview.png](docs/preview.png) — hero
+- [docs/scorecard.png](docs/scorecard.png) — Eval Maturity Scorecard (score 70)
+- [docs/form.png](docs/form.png) — Priestley form
