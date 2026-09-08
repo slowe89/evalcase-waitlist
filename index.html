@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EvalCase Factory — DFY MCP / tool-use eval packs</title>
+    <meta
+      name="description"
+      content="EvalCase Factory delivers versioned task packs + sandbox hooks + golden claims you can rerun — so your eval eng time goes to judgment, not YAML archaeology."
+    />
+    <meta name="theme-color" content="#14160f" />
+    <meta property="og:title" content="EvalCase Factory — DFY MCP / tool-use eval packs" />
+    <meta
+      property="og:description"
+      content="EvalCase Factory delivers versioned task packs + sandbox hooks + golden claims you can rerun — so your eval eng time goes to judgment, not YAML archaeology."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="wordmark" href="#top">EvalCase Factory</a>
+        <p class="demand-badge">Demand test</p>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="wrap">
+          <p class="eyebrow">DFY MCP / tool-use eval packs</p>
+          <h1>Labs are paying $60–$120/hr to hand-build MCP eval environments.</h1>
+          <p class="subhead">
+            EvalCase Factory delivers versioned task packs + sandbox hooks + golden claims you can
+            rerun — so your eval eng time goes to judgment, not YAML archaeology.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#scorecard" data-source="evalcase-scorecard"
+              >Get your Eval Maturity Score (free)</a
+            >
+            <a class="btn secondary" href="#waitlist" data-source="evalcase-waitlist"
+              >Join the waitlist for a Starter pack</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="bullets" id="why">
+        <div class="wrap">
+          <ol class="bullet-grid">
+            <li>
+              <h2>Packs, not forever contractors</h2>
+              <p>
+                Reproducible task packs with deterministic checks and claim-level rubrics. You buy a
+                deliverable you can version and re-run, not an open-ended staffing line.
+              </p>
+            </li>
+            <li>
+              <h2>Built for tool-use / MCP reality</h2>
+              <p>
+                Multi-step tasks, sandbox notes, golden claims, and judge rubrics aligned to how
+                agents actually call tools — not toy single-turn prompts.
+              </p>
+            </li>
+            <li>
+              <h2>Refresh path when tools move</h2>
+              <p>
+                Optional retainer keeps packs current when MCP servers, tool schemas, and harness
+                conventions churn.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="pricing" id="ranges">
+        <div class="wrap">
+          <p class="table-label">early demand-test ranges — not a cart</p>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Offer</th>
+                  <th scope="col">Soft range</th>
+                  <th scope="col">What they get</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Starter pack</td>
+                  <td>$4,997–$9,997</td>
+                  <td>N tasks + sandbox notes + judge rubric + golden claims</td>
+                </tr>
+                <tr>
+                  <td>Domain pack</td>
+                  <td>$12,000–$25,000</td>
+                  <td>Vertical / harder domain pack</td>
+                </tr>
+                <tr>
+                  <td>Refresh retainer</td>
+                  <td>$1,497–$3,997/mo</td>
+                  <td>Pack updates when tools/MCP surfaces drift</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="scorecard" id="scorecard">
+        <div class="wrap">
+          <div class="scorecard-head">
+            <div>
+              <p class="eyebrow">Client-side · 10 items · Yes = 10 · No = 0</p>
+              <h2>Eval Maturity Score</h2>
+              <p class="lede">
+                Answer yes or no. Your total is 0–100. After you score, share it with the Priestley
+                form below if you want a pack conversation.
+              </p>
+            </div>
+            <aside class="score-readout" aria-live="polite">
+              <p class="score-number" id="score-total">—</p>
+              <p class="score-band" id="score-band">Answer to score</p>
+              <p class="score-progress" id="score-progress">0 / 10 answered</p>
+            </aside>
+          </div>
+
+          <ol class="items" id="score-items">
+            <li data-key="q1">
+              <fieldset>
+                <legend>Sandbox or isolated env for agent tool calls (documented)</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q1" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q1" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q2">
+              <fieldset>
+                <legend>Tasks are versioned (semver or dated pack IDs)</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q2" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q2" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q3">
+              <fieldset>
+                <legend>Golden claims or expected outcomes exist per task</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q3" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q3" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q4">
+              <fieldset>
+                <legend>Deterministic verification path exists (tests, hashes, schema asserts)</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q4" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q4" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q5">
+              <fieldset>
+                <legend>Judge rubric is written and reusable (when LLM-judge is used)</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q5" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q5" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q6">
+              <fieldset>
+                <legend>MCP / tool coverage is intentional (not accidental toy tools)</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q6" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q6" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q7">
+              <fieldset>
+                <legend>Multi-step / cross-tool workflows are in the suite</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q7" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q7" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q8">
+              <fieldset>
+                <legend>
+                  Failure taxonomy is labeled (tool-call vs cognitive / stopping / synthesis)
+                </legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q8" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q8" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q9">
+              <fieldset>
+                <legend>Regression gate in CI (or scheduled re-runs) on pack changes</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q9" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q9" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+            <li data-key="q10">
+              <fieldset>
+                <legend>Refresh owner + cadence when tool schemas / MCP servers move</legend>
+                <div class="yn">
+                  <label><input type="radio" name="maturity-q10" value="Y" /> Yes</label>
+                  <label><input type="radio" name="maturity-q10" value="N" /> No</label>
+                </div>
+              </fieldset>
+            </li>
+          </ol>
+
+          <div class="score-invite" id="score-invite" hidden>
+            <p id="score-invite-text"></p>
+            <a class="btn primary" href="#waitlist" data-source="evalcase-scorecard"
+              >Share score + answers via the form</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="waitlist" id="waitlist">
+        <div class="wrap">
+          <p class="eyebrow">Priestley interview</p>
+          <h2>EvalCase Factory waitlist / score follow-up</h2>
+          <p class="lede">
+            Required: email, Q1–Q5, and a budget band. Optional fields help us see whether a
+            Starter or Domain pack is even the right shape.
+          </p>
+
+          <div class="success" id="form-success" hidden>
+            <p>
+              Got it — we’ll reply from thespencerlowe@gmail.com if you’re a fit for a Starter or
+              Domain pack.
+            </p>
+          </div>
+
+          <form
+            id="priestley-form"
+            class="priestley"
+            action="https://formsubmit.co/thespencerlowe@gmail.com"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="EvalCase Factory waitlist / score follow-up" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="source" id="meta-source" value="evalcase-waitlist" />
+            <input type="hidden" name="score_total" id="meta-score-total" value="" />
+            <input type="hidden" name="score_vector" id="meta-score-vector" value="" />
+            <input type="hidden" name="timestamp" id="meta-timestamp" value="" />
+
+            <div class="field">
+              <label for="email">Work email <span class="req">required</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="q1"
+                >1. What breaks (or burns calendar) when you try to measure whether agents can
+                actually use your tools / MCP servers today?
+                <span class="req">required</span></label
+              >
+              <textarea id="q1" name="q1_what_breaks" rows="4" required></textarea>
+            </div>
+
+            <fieldset class="field check-group">
+              <legend>
+                2. Which pieces of an eval harness do you already have — or have you never assembled
+                them end-to-end? <span class="req">required · multi-select</span>
+              </legend>
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="Sandbox / fixtures" /> Sandbox /
+                fixtures</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="Versioned tasks" /> Versioned
+                tasks</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="Golden claims" /> Golden
+                claims</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="Deterministic verify" />
+                Deterministic verify</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="LLM-judge rubric" /> LLM-judge
+                rubric</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="CI regression gate" /> CI
+                regression gate</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="Failure taxonomy" /> Failure
+                taxonomy</label
+              >
+              <label class="check"
+                ><input
+                  type="checkbox"
+                  name="harness_pieces"
+                  value="We have never assembled a pack"
+                />
+                We have never assembled a pack</label
+              >
+              <label class="check"
+                ><input type="checkbox" name="harness_pieces" value="Not sure" /> Not sure</label
+              >
+              <p class="field-error" id="harness-error" hidden>Select at least one option.</p>
+            </fieldset>
+
+            <div class="field">
+              <label for="q3"
+                >3. What have you tried so far (contractors, open benchmarks, internal projects,
+                SaaS), and what still failed? <span class="req">required</span></label
+              >
+              <textarea id="q3" name="q3_what_tried" rows="4" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="q4"
+                >4. If you are paying contractors or eval eng hours for MCP / tool-use environments,
+                what does that cost you per month — or what would a wrong “agent-ready” claim cost
+                you? <span class="req">required</span></label
+              >
+              <textarea id="q4" name="q4_cost" rows="4" required></textarea>
+            </div>
+
+            <div class="field">
+              <label for="q5"
+                >5. If we handed you a versioned starter pack (tasks + sandbox notes + golden claims
+                + rubric) in 10–15 business days, what would “worth it” look like for you?
+                <span class="req">required</span></label
+              >
+              <textarea id="q5" name="q5_worth_it" rows="4" required></textarea>
+            </div>
+
+            <fieldset class="field radios">
+              <legend>Budget band <span class="req">required</span></legend>
+              <label class="radio"
+                ><input type="radio" name="budget_band" value="Under $2,000" required /> Under
+                $2,000</label
+              >
+              <label class="radio"
+                ><input type="radio" name="budget_band" value="$2,000–$5,000" /> $2,000–$5,000</label
+              >
+              <label class="radio"
+                ><input type="radio" name="budget_band" value="$5,000–$12,000" />
+                $5,000–$12,000</label
+              >
+              <label class="radio"
+                ><input type="radio" name="budget_band" value="$12,000+" /> $12,000+</label
+              >
+              <label class="radio"
+                ><input type="radio" name="budget_band" value="Not sure yet" /> Not sure yet</label
+              >
+            </fieldset>
+
+            <div class="optional-block">
+              <p class="optional-label">Optional context</p>
+              <div class="field">
+                <label for="harness-url">Harness URL</label>
+                <input id="harness-url" name="harness_url" type="url" placeholder="https://" />
+              </div>
+              <div class="field">
+                <label for="stack">Primary stack</label>
+                <input
+                  id="stack"
+                  name="primary_stack"
+                  type="text"
+                  placeholder="e.g. Claude + custom MCP servers"
+                />
+              </div>
+              <div class="field">
+                <label for="contractor">Contractor spend status</label>
+                <select id="contractor" name="contractor_spend_status">
+                  <option value="">Select…</option>
+                  <option value="Currently paying contractors">Currently paying contractors</option>
+                  <option value="Paid recently">Paid recently</option>
+                  <option value="Internal hours only">Internal hours only</option>
+                  <option value="Not spending yet">Not spending yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="retainer">Retainer interest</label>
+                <select id="retainer" name="retainer_interest">
+                  <option value="">Select…</option>
+                  <option value="Yes">Yes</option>
+                  <option value="Maybe later">Maybe later</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+
+            <p class="form-error" id="form-error" hidden></p>
+            <button class="btn primary submit" type="submit" id="submit-btn">
+              Send my score &amp; answers
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section class="audience" id="fit">
+        <div class="wrap split">
+          <div>
+            <h2>Who for</h2>
+            <p>
+              Eval / applied research leads; startups building tool-use agents; vendors who need
+              customer-facing harnesses.
+            </p>
+          </div>
+          <div>
+            <h2>Who not</h2>
+            <p>
+              Not “add llms.txt / MCP-ify my marketing site.” Not a $99/mo eval SaaS seat.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          Demand test — packaging unproven until we see budget distribution. Capture:
+          thespencerlowe@gmail.com.
+        </p>
+        <p class="privacy">
+          Answers are used only to reply about EvalCase Factory packs. We do not sell or rent your
+          details.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
