@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "EvalCase Factory Priestley demand-test interest page",
+  "description": "EvalCase Factory waitlist and eval maturity scorecard",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,8 +1,8 @@
 # EvalCase Factory
 
-Priestley demand-test interest page for EvalCase Factory (outside SOLVD). Static Vite site: landing copy, client-side Eval Maturity Scorecard, and a waitlist form. No product backend, Stripe, or payments.
+Demand-test waitlist for EvalCase Factory (outside SOLVD). Static Vite site: landing copy, client-side Eval Maturity Scorecard, and a waitlist form. No product backend, Stripe, or payments.
 
-Capture: **thespencerlowe@gmail.com**
+Capture: **thespencerlowe@gmail.com** via FormSubmit.
 
 ## Run locally
 
@@ -26,6 +26,8 @@ The form’s default action is FormSubmit.co:
 
 `https://formsubmit.co/thespencerlowe@gmail.com`
 
+AJAX success requires both HTTP success and a JSON body with `success: true` / `"true"`. Failures keep the answers and show an inline retry. The honeypot (`_honey`) stays on the submission path. A `?submitted` query string is not treated as proof of delivery.
+
 The first live submit sends FormSubmit an activation mail to that address. After you confirm it, later submissions arrive as email.
 
 To point the same form at Formspree (or another endpoint) instead, copy `.env.example` to `.env` and set:
@@ -40,16 +42,17 @@ Hidden fields on submit: `source` (`evalcase-scorecard` or `evalcase-waitlist`),
 
 ## What’s on the page
 
-- Exact demand-test copy (headline, bullets, soft ranges, who / who not, footer)
-- 10-item Eval Maturity Scorecard (Yes = 10, No = 0, bands 0–100)
-- Priestley form (required email + Q1–Q5 + budget band)
+- Outcome-led hero, pack benefits, audience, and soft early-pricing ranges
+- 10-item Eval Maturity Scorecard (Yes = 10, No = 0, bands 0–100; partial answers stay partial)
+- Waitlist interview (required email + Q1–Q5 + budget band; four optional fields)
 
-This is a waitlist / score follow-up page only. Packaging is unproven until budget distribution is visible.
+This is a waitlist / score follow-up page only. Ranges are estimates; no payment is taken here.
 
 ## Preview
 
-Browser-verified shots of the shipped page:
+Polish QA shots:
 
-- [docs/preview.png](docs/preview.png) — hero
-- [docs/scorecard.png](docs/scorecard.png) — Eval Maturity Scorecard (score 70)
-- [docs/form.png](docs/form.png) — Priestley form
+- [docs/polish-qa/hero-desktop.png](docs/polish-qa/hero-desktop.png)
+- [docs/polish-qa/scorecard-desktop.png](docs/polish-qa/scorecard-desktop.png)
+- [docs/polish-qa/form-desktop.png](docs/polish-qa/form-desktop.png)
+- [docs/polish-qa/pricing-mobile.png](docs/polish-qa/pricing-mobile.png)
