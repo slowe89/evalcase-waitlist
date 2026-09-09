@@ -57,6 +57,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.55;
+  overflow-wrap: break-word;
 }
 
 img {
@@ -588,6 +589,18 @@ legend {
   line-height: 1.4;
   color: var(--text-muted);
   max-width: 60ch;
+}
+
+.priestley,
+.optional-grid,
+.field,
+input[type="email"],
+input[type="url"],
+input[type="text"],
+textarea,
+select {
+  min-width: 0;
+  max-width: 100%;
 }
 
 input[type="email"],
