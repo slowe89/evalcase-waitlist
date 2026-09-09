@@ -1,5 +1,7 @@
 const DEFAULT_FORM_ACTION = "https://formsubmit.co/thespencerlowe@gmail.com";
 const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || DEFAULT_FORM_ACTION;
+const NOT_SURE = "Not sure";
+const DEFAULT_SUBMIT_LABEL = "Join the waitlist";
 
 const KEYS = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"];
 
@@ -14,6 +16,7 @@ const form = document.getElementById("priestley-form");
 const success = document.getElementById("form-success");
 const formError = document.getElementById("form-error");
 const harnessError = document.getElementById("harness-error");
+const harnessFieldset = form.querySelector(".check-group");
 const submitBtn = document.getElementById("submit-btn");
 const sourceField = document.getElementById("meta-source");
 const scoreTotalField = document.getElementById("meta-score-total");
@@ -24,8 +27,22 @@ const scoreBandEl = document.getElementById("score-band");
 const scoreProgressEl = document.getElementById("score-progress");
 const scoreInvite = document.getElementById("score-invite");
 const scoreInviteText = document.getElementById("score-invite-text");
+const harnessBoxes = [...form.querySelectorAll('input[name="harness_pieces"]')];
 
 form.action = FORM_ENDPOINT;
+
+let submitting = false;
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function scrollToEl(el) {
+  el.scrollIntoView({
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+    block: "center",
+  });
+}
 
 function answers() {
   return KEYS.map((key) => {
@@ -56,20 +73,22 @@ function syncScore() {
     return;
   }
 
-  scoreTotalEl.textContent = String(total);
-  scoreBandEl.textContent = complete ? bandFor(total) : "Score updates as you answer";
-
   if (complete) {
+    scoreTotalEl.textContent = `${total} / 100`;
+    scoreBandEl.textContent = bandFor(total);
     scoreInvite.hidden = false;
-    scoreInviteText.textContent = `Your Eval Maturity Score is ${total} — ${bandFor(total)}. Share this score and your answers via the Priestley form.`;
+    scoreInviteText.textContent = `Your Eval Maturity Score is ${total} / 100 — ${bandFor(total)}.`;
     scoreTotalField.value = String(total);
     scoreVectorField.value = vector.join("/");
     sourceField.value = "evalcase-scorecard";
-  } else {
-    scoreInvite.hidden = true;
-    scoreTotalField.value = answered.length ? String(total) : "";
-    scoreVectorField.value = vector.map((value) => value ?? "-").join("/");
+    return;
   }
+
+  scoreTotalEl.textContent = `${total}`;
+  scoreBandEl.textContent = `Partial · ${answered.length} of 10 answered`;
+  scoreInvite.hidden = true;
+  scoreTotalField.value = String(total);
+  scoreVectorField.value = vector.map((value) => value ?? "-").join("/");
 }
 
 function setSource(source) {
@@ -87,20 +106,83 @@ document.querySelectorAll("[data-source]").forEach((link) => {
 document.getElementById("score-items").addEventListener("change", syncScore);
 
 function harnessSelected() {
-  return [...form.querySelectorAll('input[name="harness_pieces"]:checked')].length > 0;
+  return harnessBoxes.some((box) => box.checked);
+}
+
+function showHarnessError() {
+  harnessError.hidden = false;
+  harnessFieldset.setAttribute("aria-invalid", "true");
+  harnessBoxes[0].focus();
+}
+
+function clearHarnessError() {
+  if (!harnessSelected()) return;
+  harnessError.hidden = true;
+  harnessFieldset.removeAttribute("aria-invalid");
+}
+
+function syncHarnessExclusive(changed) {
+  if (changed.value === NOT_SURE && changed.checked) {
+    harnessBoxes.forEach((box) => {
+      if (box !== changed) box.checked = false;
+    });
+  } else if (changed.value !== NOT_SURE && changed.checked) {
+    harnessBoxes.forEach((box) => {
+      if (box.value === NOT_SURE) box.checked = false;
+    });
+  }
+  clearHarnessError();
+}
+
+harnessBoxes.forEach((box) => {
+  box.addEventListener("change", () => syncHarnessExclusive(box));
+});
+
+function ajaxUrl(endpoint) {
+  return endpoint.includes("formsubmit.co/")
+    ? endpoint.replace("formsubmit.co/", "formsubmit.co/ajax/")
+    : endpoint;
+}
+
+function isConfirmedSuccess(response, body) {
+  if (!response.ok) return false;
+  if (!body || typeof body !== "object") return false;
+  return body.success === true || body.success === "true";
+}
+
+async function parseBody(response) {
+  const text = await response.text();
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
+function showFormError(message) {
+  formError.hidden = false;
+  formError.textContent = message;
+}
+
+function setSending(isSending) {
+  submitting = isSending;
+  submitBtn.disabled = isSending;
+  submitBtn.textContent = isSending ? "Sending…" : DEFAULT_SUBMIT_LABEL;
 }
 
 form.addEventListener("submit", async (event) => {
+  event.preventDefault();
   formError.hidden = true;
-  harnessError.hidden = true;
+
+  if (submitting) return;
 
   if (!harnessSelected()) {
-    event.preventDefault();
-    harnessError.hidden = false;
-    harnessError.focus?.();
+    showHarnessError();
     return;
   }
 
+  clearHarnessError();
   timestampField.value = new Date().toISOString();
   if (!scoreVectorField.value) {
     scoreVectorField.value = answers()
@@ -111,61 +193,33 @@ form.addEventListener("submit", async (event) => {
     sourceField.value = "evalcase-waitlist";
   }
 
-  event.preventDefault();
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Sending…";
-
-  const payload = new FormData(form);
-  payload.delete("_honey");
+  setSending(true);
 
   try {
-    const ajaxUrl = FORM_ENDPOINT.includes("formsubmit.co/")
-      ? FORM_ENDPOINT.replace("formsubmit.co/", "formsubmit.co/ajax/")
-      : FORM_ENDPOINT;
-
-    const response = await fetch(ajaxUrl, {
+    const response = await fetch(ajaxUrl(FORM_ENDPOINT), {
       method: "POST",
       headers: { Accept: "application/json" },
-      body: payload,
+      body: new FormData(form),
     });
+    const body = await parseBody(response);
 
-    if (!response.ok) {
-      throw new Error("submit_failed");
+    if (!isConfirmedSuccess(response, body)) {
+      showFormError("We couldn’t send that just now. Your answers are still here — try again.");
+      setSending(false);
+      formError.focus?.();
+      scrollToEl(formError);
+      return;
     }
 
     form.hidden = true;
     success.hidden = false;
-    success.scrollIntoView({ behavior: "smooth", block: "center" });
+    success.focus();
+    scrollToEl(success);
   } catch {
-    throwNativeSubmit(form);
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Send my score & answers";
+    showFormError("We couldn’t send that just now. Your answers are still here — try again.");
+    setSending(false);
+    scrollToEl(formError);
   }
 });
-
-function throwNativeSubmit(target) {
-  const native = document.createElement("form");
-  native.action = FORM_ENDPOINT;
-  native.method = "POST";
-  native.style.display = "none";
-
-  for (const [name, value] of new FormData(target)) {
-    if (name === "_honey") continue;
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = value;
-    native.appendChild(input);
-  }
-
-  document.body.appendChild(native);
-  native.submit();
-}
-
-if (new URLSearchParams(window.location.search).has("submitted")) {
-  form.hidden = true;
-  success.hidden = false;
-}
 
 syncScore();
