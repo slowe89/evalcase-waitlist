@@ -52,6 +52,13 @@ This is a waitlist / score follow-up page only. Ranges are estimates; no payment
 
 ## Preview
 
+Experiment 2 (email-first hero) shots:
+
+- [docs/experiment-2/hero-desktop.png](docs/experiment-2/hero-desktop.png)
+- [docs/experiment-2/hero-mobile.png](docs/experiment-2/hero-mobile.png)
+- [docs/experiment-2/hero-desktop-success.png](docs/experiment-2/hero-desktop-success.png)
+- [docs/experiment-2/pricing-desktop.png](docs/experiment-2/pricing-desktop.png)
+
 Polish QA shots:
 
 - [docs/polish-qa/hero-desktop.png](docs/polish-qa/hero-desktop.png)
