@@ -223,3 +223,56 @@ form.addEventListener("submit", async (event) => {
 });
 
 syncScore();
+
+const emailFirstForm = document.getElementById("email-first-form");
+const emailFirstSuccess = document.getElementById("email-first-success");
+const emailFirstError = document.getElementById("email-first-error");
+const emailFirstSubmit = document.getElementById("email-first-submit");
+const EMAIL_FIRST_SUBMIT_LABEL = "Send me the scorecard";
+
+emailFirstForm.action = FORM_ENDPOINT;
+
+let emailFirstSubmitting = false;
+
+function showEmailFirstError(message) {
+  emailFirstError.hidden = false;
+  emailFirstError.textContent = message;
+}
+
+function setEmailFirstSending(isSending) {
+  emailFirstSubmitting = isSending;
+  emailFirstSubmit.disabled = isSending;
+  emailFirstSubmit.textContent = isSending ? "Sending…" : EMAIL_FIRST_SUBMIT_LABEL;
+}
+
+emailFirstForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  emailFirstError.hidden = true;
+
+  if (emailFirstSubmitting) return;
+
+  setEmailFirstSending(true);
+
+  try {
+    const response = await fetch(ajaxUrl(FORM_ENDPOINT), {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new FormData(emailFirstForm),
+    });
+    const body = await parseBody(response);
+
+    if (!isConfirmedSuccess(response, body)) {
+      showEmailFirstError("We couldn’t send that just now. Your email is still here — try again.");
+      setEmailFirstSending(false);
+      emailFirstError.focus?.();
+      return;
+    }
+
+    emailFirstForm.hidden = true;
+    emailFirstSuccess.hidden = false;
+    emailFirstSuccess.focus();
+  } catch {
+    showEmailFirstError("We couldn’t send that just now. Your email is still here — try again.");
+    setEmailFirstSending(false);
+  }
+});
