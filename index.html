@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>EvalCase Factory — evaluation packs you can rerun</title>
+    <title>EvalCase Factory — versioned packs with run provenance</title>
     <meta
       name="description"
-      content="Test your agents with versioned evaluation packs: tasks, sandbox notes, expected outcomes and scoring rubrics for MCP tools."
+      content="Versioned cases with reproducible run metadata and typed-output / judge normalization — evaluation packs you can provenance and re-run."
     />
     <meta name="theme-color" content="#f4eee2" />
-    <meta property="og:title" content="EvalCase Factory — evaluation packs you can rerun" />
+    <meta property="og:title" content="EvalCase Factory — versioned packs with run provenance" />
     <meta
       property="og:description"
-      content="Test your agents with versioned evaluation packs: tasks, sandbox notes, expected outcomes and scoring rubrics for MCP tools."
+      content="Versioned cases with reproducible run metadata and typed-output / judge normalization — evaluation packs you can provenance and re-run."
     />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,10 +37,11 @@
       <section class="hero" id="top">
         <div class="wrap">
           <p class="eyebrow">Evaluation packs for tool-using agents</p>
-          <h1>Test your agents with evaluation packs you can rerun.</h1>
+          <h1>Ship eval packs you can version, provenance, and re-run.</h1>
           <p class="subhead">
-            Get versioned tasks, sandbox setup notes, expected outcomes and scoring rubrics for your
-            MCP tools. Spend less time assembling tests and more time understanding failures.
+            Versioned tasks, sandbox notes, expected outcomes, and scoring rubrics — with immutable
+            case revisions, reproducible run metadata, and typed-output normalization so a numeric
+            string does not silently break a judge metric.
           </p>
           <div class="cta-row">
             <a class="btn primary" href="#scorecard" data-source="evalcase-scorecard"
@@ -58,24 +59,24 @@
           <h2>What’s in a pack</h2>
           <ol class="bullet-grid">
             <li>
-              <h3>Packs, not forever contractors</h3>
+              <h3>Immutable case revisions + run provenance</h3>
               <p>
-                Reproducible task packs with deterministic checks and claim-level rubrics. You buy a
-                deliverable you can version and re-run, not an open-ended staffing line.
+                Every pack ships with versioned case IDs and enough run metadata to reproduce a
+                grade — not a one-off YAML dump.
               </p>
             </li>
             <li>
-              <h3>Built for tool-use / MCP reality</h3>
+              <h3>Typed-output and judge-score normalization</h3>
               <p>
-                Multi-step tasks, sandbox notes, expected outcomes, and scoring rubrics aligned to
-                how agents actually call tools — not toy single-turn prompts.
+                We treat numeric strings, schema drift, and sibling-metric mismatch as pack defects
+                to catch before a real eval fails on typing.
               </p>
             </li>
             <li>
-              <h3>Refresh path when tools move</h3>
+              <h3>Refresh when tools move</h3>
               <p>
                 Optional retainer keeps packs current when MCP servers, tool schemas, and harness
-                conventions churn.
+                conventions churn — provenance stays intact across refreshes.
               </p>
             </li>
           </ol>
@@ -87,13 +88,16 @@
           <div>
             <h2>Who it’s for</h2>
             <p>
-              Evaluation leads and operators of tool-using agents; MCP vendors that need repeatable
-              tests for customers.
+              Evaluation and applied-research leads; builders of tool-using agents; vendors that
+              need customer-facing harnesses.
             </p>
           </div>
           <div>
             <h2>Who it’s not for</h2>
-            <p>Teams looking for a website integration or a self-serve evaluation dashboard.</p>
+            <p>
+              Not an llms.txt / MCP marketing site, a $99/mo eval SaaS seat, or a judge-model
+              fine-tune shop.
+            </p>
           </div>
         </div>
       </section>
@@ -155,8 +159,8 @@
               <p class="eyebrow">10 yes/no questions · No email needed to see your score</p>
               <h2>Eval Maturity Score</h2>
               <p class="lede">
-                Check which parts of your evaluation setup are in place. Each Yes adds 10 points. A
-                higher score means more of the checklist is covered; it is a self-assessment.
+                Check which parts of your evaluation setup are in place. Each Yes adds 10 points.
+                This is a self-assessment — a high score does not mean the eval is production-ready.
               </p>
             </div>
             <aside class="score-readout" aria-live="polite">
@@ -193,12 +197,12 @@
             <li data-key="q2">
               <fieldset>
                 <legend class="visually-hidden">
-                  2. Tasks are versioned (semver or dated pack IDs)
+                  2. Cases have immutable revisions and run provenance (dated pack IDs + re-run metadata)
                 </legend>
                 <div class="score-row">
                   <p class="score-question" aria-hidden="true">
                     <span class="score-num">2</span>
-                    Tasks are versioned (semver or dated pack IDs)
+                    Cases have immutable revisions and run provenance (dated pack IDs + re-run metadata)
                   </p>
                   <div class="yn">
                     <label
@@ -239,12 +243,12 @@
             <li data-key="q4">
               <fieldset>
                 <legend class="visually-hidden">
-                  4. Deterministic verification path exists (tests, hashes, schema asserts)
+                  4. Typed-output / judge-score normalization exists (numeric strings, schema asserts)
                 </legend>
                 <div class="score-row">
                   <p class="score-question" aria-hidden="true">
                     <span class="score-num">4</span>
-                    Deterministic verification path exists (tests, hashes, schema asserts)
+                    Typed-output / judge-score normalization exists (numeric strings, schema asserts)
                   </p>
                   <div class="yn">
                     <label
