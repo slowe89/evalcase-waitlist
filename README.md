@@ -38,17 +38,26 @@ VITE_FORM_ENDPOINT=https://formspree.io/f/xxxxxxxx
 
 Then rebuild. Leave it unset to keep FormSubmit → thespencerlowe@gmail.com.
 
-Hidden fields on submit: `source` (`evalcase-scorecard` or `evalcase-waitlist`), `score_total`, `score_vector` (Y/N), and `timestamp`.
+Hidden fields on the waitlist submit: `source` (`evalcase-scorecard` or `evalcase-waitlist`), `score_total`, `score_vector` (Y/N), and `timestamp`.
+
+The hero email-only form posts to the same inbox with `_subject` `EvalCase email-first CTA`, `source=evalcase-email-first`, `cta=hero-email-only`, and the `_honey` honeypot. Email is the only required field.
 
 ## What’s on the page
 
-- Outcome-led hero, pack benefits, audience, and soft early-pricing ranges
+- Outcome-led hero with an email-only above-fold CTA, pack benefits, audience, and soft early-pricing ranges
 - 10-item Eval Maturity Scorecard (Yes = 10, No = 0, bands 0–100; partial answers stay partial)
 - Waitlist interview (required email + Q1–Q5 + budget band; four optional fields)
 
 This is a waitlist / score follow-up page only. Ranges are estimates; no payment is taken here.
 
 ## Preview
+
+Experiment 2 (email-first hero) shots:
+
+- [docs/experiment-2/hero-desktop.png](docs/experiment-2/hero-desktop.png)
+- [docs/experiment-2/hero-mobile.png](docs/experiment-2/hero-mobile.png)
+- [docs/experiment-2/hero-desktop-success.png](docs/experiment-2/hero-desktop-success.png)
+- [docs/experiment-2/pricing-desktop.png](docs/experiment-2/pricing-desktop.png)
 
 Polish QA shots:
 

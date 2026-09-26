@@ -44,12 +44,55 @@
             string does not silently break a judge metric.
           </p>
           <div class="cta-row">
-            <a class="btn primary" href="#scorecard" data-source="evalcase-scorecard"
-              >Check your eval setup — free</a
+            <div class="success" id="email-first-success" hidden tabindex="-1" role="status">
+              <p>
+                Got it — we’ll reply from thespencerlowe@gmail.com with the scorecard link.
+              </p>
+            </div>
+
+            <form
+              id="email-first-form"
+              class="email-first"
+              action="https://formsubmit.co/thespencerlowe@gmail.com"
+              method="POST"
             >
-            <a class="btn secondary" href="#waitlist" data-source="evalcase-waitlist"
-              >Join the waitlist</a
-            >
+              <input type="hidden" name="_subject" value="EvalCase email-first CTA" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" />
+              <input type="hidden" name="source" value="evalcase-email-first" />
+              <input type="hidden" name="cta" value="hero-email-only" />
+
+              <div class="email-first-row">
+                <div class="field">
+                  <label for="hero-email">Work email</label>
+                  <input
+                    id="hero-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    aria-describedby="hero-trust"
+                    required
+                  />
+                </div>
+                <button class="btn primary" type="submit" id="email-first-submit">
+                  Send me the scorecard
+                </button>
+              </div>
+              <p class="form-error" id="email-first-error" hidden role="alert" tabindex="-1"></p>
+            </form>
+
+            <p class="hero-trust" id="hero-trust">
+              No budget questions in this step. We’ll send the scorecard link from
+              thespencerlowe@gmail.com.
+            </p>
+            <p class="hero-alt">
+              <a href="#scorecard" data-source="evalcase-scorecard"
+                >Or take the Eval Maturity Score first</a
+              >
+              <a href="#waitlist" data-source="evalcase-waitlist">Tell us more about your setup</a>
+            </p>
           </div>
         </div>
       </section>
